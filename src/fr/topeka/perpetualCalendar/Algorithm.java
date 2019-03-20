@@ -1,12 +1,14 @@
 package fr.topeka.perpetualCalendar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * 
- * @author Quentin
+ * @author Quentin Legot
  *
  */
 public class Algorithm {
@@ -17,39 +19,43 @@ public class Algorithm {
 	
 	public Algorithm() {
 		Scanner sc = new Scanner(System.in);
+		// on crée une liste sur laquelle, on stocke tout les jours de la semaine
+		weekDayList.add("Dimanche");
 		weekDayList.add("Lundi");
 		weekDayList.add("Mardi");
 		weekDayList.add("Mercredi");
 		weekDayList.add("Jeudi");
 		weekDayList.add("Vendredi");
 		weekDayList.add("Samedi");
-		weekDayList.add("Dimanche");
-		System.out.println("Saisissez l'année de base");
-		baseYear = sc.nextInt();
-		System.out.println("Saisissez le mois de base");
-		baseMonth = sc.nextInt();
-		System.out.println("Saisissez le jour de base");
-		baseDay = sc.nextInt();
-		setWeekDay(sc);
-		baseWeekDay = weekDayList.indexOf(weekDay);
-		System.out.println(baseWeekDay);
-		System.out.println("Saisissez l'année de la date que vous chercher");
-		year = sc.nextInt();
-		System.out.println("Saisissez le mois de la date que vous chercher");
-		month = sc.nextInt();
+		//On récupère la date d'ajourd'hui
+		GregorianCalendar calendar = new GregorianCalendar();
+		baseYear = calendar.get(Calendar.YEAR);
+		// sur cette methode, le mois est donné entre 0 et 11 donc on ajoute 1
+		baseMonth = calendar.get(Calendar.MONTH) + 1;
+		baseDay = calendar.get(Calendar.DAY_OF_MONTH);
+		// idem ici sauf qu'on veut que la date soit donnée entre 0 et 6 et non 1 et 7
+		baseWeekDay = calendar.get(Calendar.DAY_OF_WEEK) -1;
+		 /* setWeekDay(sc);
+		  baseWeekDay = weekDayList.indexOf(weekDay); */
+		System.out.println("On est le " + weekDayList.get(baseWeekDay) + " " + baseDay + "/" + baseMonth + "/" + baseYear);
 		System.out.println("Saisissez le jour de la date que vous chercher");
 		day = sc.nextInt();
+		System.out.println("Saisissez le mois de la date que vous chercher");
+		month = sc.nextInt();
+		System.out.println("Saisissez l'année de la date que vous chercher");
+		year = sc.nextInt();
+		// on cherche si les dates saisis existent
 		if(ifDateExist()) {
 			System.out.println("La date existe");
 			int numbersOfDayOfDifference;
+			// on cherche si la date donnée est avant ou après celle d'adj
 			if(ifBaseDateisBeforeDate()) {
-				System.out.println("La date de base est avant la date que vous chercher");
+				// on cherche le nombre de jours de différence entre adj et la date indiquée
 				numbersOfDayOfDifference = numbersOfDateOfDifferenceAfter();
 				System.out.println(numbersOfDayOfDifference);
 				result = (numbersOfDayOfDifference+baseWeekDay)%7;
 				System.out.println(weekDayList.get(result));
 			}else {
-				System.out.println("La date de base est après la date que vous chercher");
 				numbersOfDayOfDifference = numbersOfDateOfDifferenceBefore();
 				System.out.println(numbersOfDayOfDifference);
 				result = (numbersOfDayOfDifference+baseWeekDay)%7;
@@ -59,6 +65,8 @@ public class Algorithm {
 		}else {
 			System.out.println("La date n'existe pas");
 		}
+		sc.close();
+		System.exit(0);
 	}
 	
 	private boolean ifDateExist() {
@@ -297,6 +305,8 @@ public class Algorithm {
 		}else return false;
 	}
 	
+	
+	@SuppressWarnings("unused")
 	private void setWeekDay(Scanner sc) {
 		boolean fail=false;
 		while(!weekDayList.contains(weekDay)) {
