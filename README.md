@@ -6,7 +6,7 @@ If you see a bug or a way to improve program, don't hesitate to go to the sectio
 
 ## Why String are in french ?
 
-This program was created for the needs of the "Math.en.Jeans" workshop, see more: [https://www.mathenjeans.fr/content/arithm%C3%A9tique-modulaire-calendrier-perp%C3%A9tuel-lyc%C3%A9e-alain-chartier-bayeux](https://www.mathenjeans.fr/content/arithm%C3%A9tique-modulaire-calendrier-perp%C3%A9tuel-lyc%C3%A9e-alain-chartier-bayeux) \(it's in french\)
+This program was created for the needs of the "Math.en.Jeans" workshop, see more: [https://www.mathenjeans.fr/content/arithm%C3%A9tique-modulaire-calendrier-perp%C3%A9tuel-lyc%C3%A9e-alain-chartier-bayeux-lyc%C3%A9e-jeanne-d%E2%80%99arc]https://www.mathenjeans.fr/content/arithm%C3%A9tique-modulaire-calendrier-perp%C3%A9tuel-lyc%C3%A9e-alain-chartier-bayeux-lyc%C3%A9e-jeanne-d%E2%80%99arc \(it's in french\)
 
 ## License
 
