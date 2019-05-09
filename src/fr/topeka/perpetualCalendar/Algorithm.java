@@ -14,7 +14,8 @@ import java.util.Scanner;
 public class Algorithm {
 
 	private int baseYear, baseMonth, baseDay, baseWeekDay, year, month, day, result;
-	private String weekDay = "";
+	// baseYear, baseMonth et baseDay correspondent à la date d'aujourd'hui
+	// year, month et day correspondent à la date que cherche l'utilisateur
 	private List<String> weekDayList= new ArrayList<>();
 	
 	public Algorithm() {
@@ -27,6 +28,7 @@ public class Algorithm {
 		weekDayList.add("Jeudi");
 		weekDayList.add("Vendredi");
 		weekDayList.add("Samedi");
+		
 		//On récupère la date d'ajourd'hui
 		GregorianCalendar calendar = new GregorianCalendar();
 		baseYear = calendar.get(Calendar.YEAR);
@@ -35,8 +37,10 @@ public class Algorithm {
 		baseDay = calendar.get(Calendar.DAY_OF_MONTH);
 		// idem ici sauf qu'on veut que la date soit donnée entre 0 et 6 et non 1 et 7
 		baseWeekDay = calendar.get(Calendar.DAY_OF_WEEK) -1;
+		
 		 /* setWeekDay(sc);
 		  baseWeekDay = weekDayList.indexOf(weekDay); */
+		
 		System.out.println("On est le " + weekDayList.get(baseWeekDay) + " " + baseDay + "/" + baseMonth + "/" + baseYear);
 		System.out.println("Saisissez le jour de la date que vous chercher");
 		day = sc.nextInt();
@@ -53,11 +57,14 @@ public class Algorithm {
 				// on cherche le nombre de jours de différence entre adj et la date indiquée
 				numbersOfDayOfDifference = numbersOfDateOfDifferenceAfter();
 				System.out.println(numbersOfDayOfDifference);
+				
 				result = (numbersOfDayOfDifference+baseWeekDay)%7;
 				System.out.println(weekDayList.get(result));
 			}else {
+				// on cherche le nombre de jours de différence entre adj et la date indiquée
 				numbersOfDayOfDifference = numbersOfDateOfDifferenceBefore();
 				System.out.println(numbersOfDayOfDifference);
+				
 				result = (numbersOfDayOfDifference+baseWeekDay)%7;
 				if(result<0) result+=7;
 				System.out.println(weekDayList.get(result));
@@ -70,28 +77,14 @@ public class Algorithm {
 	}
 	
 	private boolean ifDateExist() {
-		if(baseMonth<1 || baseDay<1 || month<1 || day<1 || baseMonth>12 || month>12 ||baseDay>31 || day>31 || baseYear<1584 || year<1584) {
+		if(month<1 || day<1 || month>12 || day>31 || year<1584) {
 			System.out.println("1: La date renseignée n'existe pas");
 			return false;
 		}else {
-			if(baseDay==31) {
-				if(!(baseMonth==1 || baseMonth==3 || baseMonth==5 || baseMonth==7 || baseMonth==8 || baseMonth==10 || baseMonth==12)) {
-					System.out.println("2: La date renseignée n'existe pas");
-					return false;
-				}
-			}
 			if(day==31) {
 				if(!(month==1 || month==3 || month==5 || month==7 || month==8 || month==10 || month==12)) {
 					System.out.println("3: La date renseignée n'existe pas");
 					return false;
-				}
-			}
-			if(baseDay==29 && baseMonth==2) {
-				if(!(baseYear%400==0)) {
-					if(!(baseYear%4==0 && !(baseYear%100==0))) {
-						System.out.println("4: La date renseignée n'existe pas");
-						return false;
-					}
 				}
 			}
 			if(day==29 && month==2) {
@@ -102,7 +95,7 @@ public class Algorithm {
 					}
 				}
 			}
-			if((baseYear==1584 && baseMonth<11) || (year==1584 && month<11)) {
+			if(year==1584 && month<11) {
 				System.out.println("6: La date renseignée n'existe pas");
 				return false;
 			}
@@ -303,19 +296,6 @@ public class Algorithm {
 				else return false;
 			}else return false;
 		}else return false;
-	}
-	
-	
-	@SuppressWarnings("unused")
-	private void setWeekDay(Scanner sc) {
-		boolean fail=false;
-		while(!weekDayList.contains(weekDay)) {
-		if(fail) System.out.println("Erreur: Veuillez écrire correctement le jour de la semaine");
-		
-		System.out.println("Saisissez le jour de la semaine de cette date");
-		weekDay = sc.nextLine();
-		fail=true;
-		}
 	}
 	
 }
