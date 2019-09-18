@@ -13,14 +13,14 @@ import java.util.Scanner;
  */
 public class Algorithm {
 
-	private int baseYear, baseMonth, baseDay, baseWeekDay, year, month, day, result;
+	private int baseYear, baseMonth, baseDay, year, month, day;
 	// baseYear, baseMonth et baseDay correspondent à la date d'aujourd'hui
 	// year, month et day correspondent à la date que cherche l'utilisateur
-	private List<String> weekDayList= new ArrayList<>();
-	
+
 	public Algorithm() {
 		Scanner sc = new Scanner(System.in);
 		// on crée une liste sur laquelle, on stocke tout les jours de la semaine
+		List<String> weekDayList = new ArrayList<>();
 		weekDayList.add("Dimanche");
 		weekDayList.add("Lundi");
 		weekDayList.add("Mardi");
@@ -36,10 +36,7 @@ public class Algorithm {
 		baseMonth = calendar.get(Calendar.MONTH) + 1;
 		baseDay = calendar.get(Calendar.DAY_OF_MONTH);
 		// idem ici sauf qu'on veut que la date soit donnée entre 0 et 6 et non 1 et 7
-		baseWeekDay = calendar.get(Calendar.DAY_OF_WEEK) -1;
-		
-		 /* setWeekDay(sc);
-		  baseWeekDay = weekDayList.indexOf(weekDay); */
+		int baseWeekDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
 		
 		System.out.println("On est le " + weekDayList.get(baseWeekDay) + " " + baseDay + "/" + baseMonth + "/" + baseYear);
 		System.out.println("Saisissez le jour de la date que vous chercher");
@@ -53,6 +50,7 @@ public class Algorithm {
 			System.out.println("La date existe");
 			int numbersOfDayOfDifference;
 			// on cherche si la date donnée est avant ou après celle d'adj
+			int result;
 			if(ifBaseDateisBeforeDate()) {
 				// on cherche le nombre de jours de différence entre adj et la date indiquée
 				numbersOfDayOfDifference = numbersOfDateOfDifferenceAfter();
@@ -77,7 +75,7 @@ public class Algorithm {
 	}
 	
 	private boolean ifDateExist() {
-		if(month<1 || day<1 || month>12 || day>31 || year<1584) {
+		if(month<1 || day<1 || month>12 || day>31 || year<1582) {
 			System.out.println("1: La date renseignée n'existe pas");
 			return false;
 		}else {
@@ -95,7 +93,7 @@ public class Algorithm {
 					}
 				}
 			}
-			if(year==1584 && month<11) {
+			if(year==1582 && month<3) {
 				System.out.println("6: La date renseignée n'existe pas");
 				return false;
 			}
@@ -104,11 +102,12 @@ public class Algorithm {
 	}
 	
 	private int numbersOfDateOfDifferenceAfter() {
+		// Cette méthode / fonction est appellé seulement si la date recherchée est après la date d'adj
 		int var=0;
 		boolean finish=false;
 		int[] list = new int[3];
 		int year=this.baseYear, month=this.baseMonth, day=this.baseDay;
-		while(finish==false) {
+		while(!finish) {
 			if(year>this.year) {
 				finish=true;
 			}else {
@@ -201,11 +200,12 @@ public class Algorithm {
 	}
 	
 	private int numbersOfDateOfDifferenceBefore() {
+		// Cette méthode / fonction est appellé seulement si la date recherchée est après la date d'adj
 		int var=0;
 		boolean finish=false;
 		int[] list = new int[3];
 		int year=this.baseYear, month=this.baseMonth, day=this.baseDay;
-		while(finish==false) {
+		while(!finish) {
 			if(year<this.year) {
 				finish=true;
 			}else {
