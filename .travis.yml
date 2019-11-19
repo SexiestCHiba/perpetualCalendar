@@ -5,3 +5,4 @@ jdk:
 
 script:
   - jar cf perpetualCalendar.jar src/fr/topeka/perpetualCalendar/PerpetualCalendar.java src/fr/topeka/perpetualCalendar/Algorithm.java README.md LICENSE
+  - java -jar perpetualCalendar.jar
