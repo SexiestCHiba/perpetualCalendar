@@ -1,4 +1,4 @@
-# PerpetualCalendar
+# PerpetualCalendar [![Build Status](https://travis-ci.com/SexiestCHiba/perpetualCalendar.svg?branch=master)](https://travis-ci.com/SexiestCHiba/perpetualCalendar)
 
 A perpetual calendar to know the day of the week of the date you are looking for.
 
