@@ -10,5 +10,6 @@ addons:
       - openjdk-8-jdk-headless
 
 script:
-  - jar cf perpetualCalendar.jar src/fr/topeka/perpetualCalendar/PerpetualCalendar.java src/fr/topeka/perpetualCalendar/Algorithm.java README.md LICENSE
-  - java -jar perpetualCalendar.jar
+  - javac src/fr/topeka/perpetualCalendar/PerpetualCalendar.java src/fr/topeka/perpetualCalendar/Algorithm.java
+  - cd src/ && jar cvfe ../perpetualCalendar.jar fr.topeka.perpetualCalendar.PerpetualCalendar fr/topeka/perpetualCalendar/PerpetualCalendar.class fr/topeka/perpetualCalendar/Algorithm.class ../README.md ../LICENSE
+  - cd .. && java -jar perpetualCalendar.jar
