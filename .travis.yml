@@ -2,6 +2,12 @@ language: java
 
 jdk:
   - openjdk8
+  
+addons:
+  apt:
+    package:
+      - openjdk-8-jre-headless
+      - openjdk-8-jdk-headless
 
 script:
   - jar cf perpetualCalendar.jar src/fr/topeka/perpetualCalendar/PerpetualCalendar.java src/fr/topeka/perpetualCalendar/Algorithm.java README.md LICENSE
